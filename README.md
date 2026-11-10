@@ -11,7 +11,7 @@
 
 1. Настройка окружения:
 ```bash
-git clone <ссылка_на_репозиторий>
+git clone https://github.com/Musalyamova/SE_2_agent.git
 cd SE_2_agent
 python -m venv .venv
 source .venv/bin/activate  # Для Windows: .venv\Scripts\activate
@@ -28,6 +28,19 @@ ollama pull gemma2:2b && ollama pull qwen2.5-coder:7b && ollama pull llama3.1:8b
 cp .env.example .env
 python main.py
 ```
+
+## Структура проекта
+
+* `graph.py` - ядро оркестратора на LangGraph (Supervisor, Reviewer, Validator, Sandbox).
+* `state.py` - описание состояния `AgentState` (данные, передаваемые между узлами).
+* `memory_manager.py` - работа с 3 слоями памяти (SQLite: `facts` и `checkpoints`).
+* `tools.py` - интеграция с E2B (Firecracker microVM) для безопасного запуска кода.
+* `main.py` - CLI-интерфейс для запуска агента.
+* `evals.py` - скрипт оценки качества (метрики Accuracy, Latency).
+* `soul.md` - спецификация поведения агента (Zero Trust).
+* `prompts/` - системные промпты для LLM.
+* `skills/` - динамические скиллы (правила поиска уязвимостей).
+* `docs/` - архитектурные диаграммы (C4, Sequence).
 
 ## Сценарии использования и проверка
 
